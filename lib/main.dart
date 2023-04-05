@@ -1,5 +1,6 @@
 import 'package:e_food_cort/components/bottom_navbar.dart';
 import 'package:e_food_cort/components/list_products.dart';
+import 'package:e_food_cort/components/product_per_category.dart';
 import 'package:flutter/material.dart';
 
 void main(List<String> args) {
@@ -41,7 +42,7 @@ class _NavbarAppBarState extends State<NavbarAppBar> {
         actions: [
           IconButton(
             icon: const Icon(
-              Icons.shopping_cart_rounded,
+              Icons.shopping_bag_rounded,
               color: Color(0xFF009E1A),
             ),
             onPressed: () {
@@ -59,36 +60,7 @@ class _NavbarAppBarState extends State<NavbarAppBar> {
               fontWeight: FontWeight.bold,
             )),
       ),
-      bottomNavigationBar: BottomNavigationBar(
-        items: [
-          BottomNavigationBarItem(
-            icon: Icon(
-              Icons.home,
-              size: 18,
-            ),
-            label: 'Beranda',
-          ),
-          BottomNavigationBarItem(
-            icon: Icon(
-              Icons.assignment,
-              size: 18,
-            ),
-            label: 'Pesanan',
-          ),
-          BottomNavigationBarItem(
-            icon: Icon(
-              Icons.favorite,
-              size: 18,
-            ),
-            label: 'Wishlist',
-          ),
-        ],
-        currentIndex: _selectedNavbar,
-        selectedItemColor: Colors.green,
-        unselectedItemColor: Colors.grey,
-        showUnselectedLabels: true,
-        onTap: _changeSelectedNavBar,
-      ),
+      bottomNavigationBar: BottomNavbar(),
       body: ListView(
         children: <Widget>[
           Container(
@@ -162,7 +134,14 @@ class _NavbarAppBarState extends State<NavbarAppBar> {
                         children: [
                           Expanded(
                             flex: 1,
-                            child: Container(
+                            child: GestureDetector(
+                              onTap: () {
+                                 Navigator.push(
+                                  context,
+                                  MaterialPageRoute(builder: (context) => ProductPerCategory(productType: 'ROTI')),
+                                );
+                              },
+                              child: Container(
                               decoration: BoxDecoration(
                                 shape: BoxShape.rectangle,
                                 borderRadius: BorderRadius.circular(
@@ -196,10 +175,18 @@ class _NavbarAppBarState extends State<NavbarAppBar> {
                                 ],
                               ),
                             ),
+                            )
                           ),
                           Expanded(
                             flex: 1,
-                            child: Container(
+                            child: GestureDetector(
+                              onTap: () {
+                                 Navigator.push(
+                                  context,
+                                  MaterialPageRoute(builder: (context) => ProductPerCategory(productType: 'KOPI')),
+                                );
+                              },
+                              child: Container(
                               decoration: BoxDecoration(
                                 shape: BoxShape.rectangle,
                                 borderRadius: BorderRadius.circular(
@@ -233,10 +220,18 @@ class _NavbarAppBarState extends State<NavbarAppBar> {
                                 ],
                               ),
                             ),
+                            )
                           ),
                           Expanded(
                             flex: 1,
-                            child: Container(
+                            child: GestureDetector(
+                              onTap: () {
+                                 Navigator.push(
+                                  context,
+                                  MaterialPageRoute(builder: (context) => ProductPerCategory(productType: 'MINUMAN')),
+                                );
+                              },
+                              child: Container(
                               decoration: BoxDecoration(
                                 shape: BoxShape.rectangle,
                                 borderRadius: BorderRadius.circular(
@@ -270,10 +265,18 @@ class _NavbarAppBarState extends State<NavbarAppBar> {
                                 ],
                               ),
                             ),
+                            )
                           ),
                           Expanded(
                             flex: 1,
-                            child: Container(
+                            child: GestureDetector(
+                              onTap: () {
+                                 Navigator.push(
+                                  context,
+                                  MaterialPageRoute(builder: (context) => ProductPerCategory(productType: 'BURGER')),
+                                );
+                              },
+                              child: Container(
                               decoration: BoxDecoration(
                                 shape: BoxShape.rectangle,
                                 borderRadius: BorderRadius.circular(
@@ -307,6 +310,7 @@ class _NavbarAppBarState extends State<NavbarAppBar> {
                                 ],
                               ),
                             ),
+                            )
                           ),
                         ],
                       ),
@@ -315,7 +319,14 @@ class _NavbarAppBarState extends State<NavbarAppBar> {
                         children: [
                           Expanded(
                             flex: 1,
-                            child: Container(
+                            child: GestureDetector(
+                              onTap: () {
+                                 Navigator.push(
+                                  context,
+                                  MaterialPageRoute(builder: (context) => ProductPerCategory(productType: 'ESKRIM')),
+                                );
+                              },
+                              child: Container(
                               decoration: BoxDecoration(
                                 shape: BoxShape.rectangle,
                                 borderRadius: BorderRadius.circular(
@@ -349,10 +360,18 @@ class _NavbarAppBarState extends State<NavbarAppBar> {
                                 ],
                               ),
                             ),
+                            )
                           ),
                           Expanded(
                             flex: 1,
-                            child: Container(
+                            child: GestureDetector(
+                              onTap: () {
+                                 Navigator.push(
+                                  context,
+                                  MaterialPageRoute(builder: (context) => ProductPerCategory(productType: 'PIZZA')),
+                                );
+                              },
+                              child: Container(
                               decoration: BoxDecoration(
                                 shape: BoxShape.rectangle,
                                 borderRadius: BorderRadius.circular(
@@ -386,10 +405,18 @@ class _NavbarAppBarState extends State<NavbarAppBar> {
                                 ],
                               ),
                             ),
+                            )
                           ),
                           Expanded(
                             flex: 1,
-                            child: Container(
+                            child: GestureDetector(
+                              onTap: () {
+                                 Navigator.push(
+                                  context,
+                                  MaterialPageRoute(builder: (context) => ProductPerCategory(productType: 'NASI')),
+                                );
+                              },
+                              child: Container(
                               decoration: BoxDecoration(
                                 shape: BoxShape.rectangle,
                                 borderRadius: BorderRadius.circular(
@@ -423,10 +450,18 @@ class _NavbarAppBarState extends State<NavbarAppBar> {
                                 ],
                               ),
                             ),
+                            )
                           ),
                           Expanded(
                             flex: 1,
-                            child: Container(
+                            child: GestureDetector(
+                              onTap: () {
+                                 Navigator.push(
+                                  context,
+                                  MaterialPageRoute(builder: (context) => ProductPerCategory(productType: 'SEAFOOD')),
+                                );
+                              },
+                              child: Container(
                               decoration: BoxDecoration(
                                 shape: BoxShape.rectangle,
                                 borderRadius: BorderRadius.circular(
@@ -460,10 +495,11 @@ class _NavbarAppBarState extends State<NavbarAppBar> {
                                 ],
                               ),
                             ),
+                            )
                           ),
                         ],
                       ),
-                    ],
+                     ],
                   ),
                 )
               ],

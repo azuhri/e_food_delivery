@@ -49,7 +49,7 @@ class _DetailProductState extends State<DetailProduct> {
           },
         ),
         title: Text(
-          "Detail Menu : ${widget.product.name}",
+          "DETAIL MENU : ${widget.product.name}",
           style: TextStyle(
             fontFamily: "Poppins",
             fontSize: 15,
