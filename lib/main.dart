@@ -1,6 +1,7 @@
 import 'package:e_food_cort/components/bottom_navbar.dart';
 import 'package:e_food_cort/components/list_products.dart';
 import 'package:e_food_cort/components/product_per_category.dart';
+import 'package:e_food_cort/components/splash_screen.dart';
 import 'package:flutter/material.dart';
 
 void main(List<String> args) {
@@ -14,7 +15,7 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-      home: NavbarAppBar(),
+      home: SplashScreen(),
     );
   }
 }

@@ -4,22 +4,33 @@ import 'package:e_food_cort/models/product.dart';
 
 
 
-class ListProduct extends StatelessWidget {
+class ListProduct extends StatefulWidget {
   @override
-Widget build(BuildContext context) {
+  _ListProductState createState() => _ListProductState();
+}
+
+class _ListProductState extends State<ListProduct> {
+  List<Product> mostLikedProduct = [];
+  void initState() {
+    super.initState();
+    mostLikedProduct = dataProduct.where((product) => product.likes > 150).toList();
+  }
+
+  @override
+  Widget build(BuildContext context) {
   return Container(
     padding: EdgeInsets.only(top: 0, bottom: 20),
     child: GridView.builder(
       shrinkWrap: true,
       physics: NeverScrollableScrollPhysics(),
-      itemCount: dataProduct.length,
+      itemCount: mostLikedProduct.length,
       gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
         crossAxisCount: 2,
         crossAxisSpacing: 5,
         mainAxisSpacing: 5,
       ),
       itemBuilder: (BuildContext context, int index) {
-        final product = dataProduct[index];
+        final product = mostLikedProduct[index];
           return Card(
             shape: RoundedRectangleBorder(
               borderRadius: BorderRadius.circular(15.0),
