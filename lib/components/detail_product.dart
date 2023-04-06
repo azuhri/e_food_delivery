@@ -1,6 +1,9 @@
+import 'package:e_food_cort/main.dart';
 import 'package:e_food_cort/models/product.dart';
+import 'package:e_food_cort/providers/order-provider.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
+import 'package:provider/provider.dart';
 
 class DetailProduct extends StatefulWidget {
   const DetailProduct({
@@ -34,6 +37,7 @@ class _DetailProductState extends State<DetailProduct> {
 
   @override
   Widget build(BuildContext context) {
+    final stateOrder = Provider.of<OrderProvider>(context);
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Color.fromARGB(0, 255, 255, 255),
@@ -167,7 +171,8 @@ class _DetailProductState extends State<DetailProduct> {
                   width: 120,
                   child: TextButton(
                     onPressed: () {
-                      
+                      stateOrder.createOrder(widget.product);
+                      Navigator.push(context,  MaterialPageRoute(builder: (context) => NavbarAppBar()),);
                     },
                     child: Text(
                       'PESAN',

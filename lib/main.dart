@@ -1,8 +1,12 @@
 import 'package:e_food_cort/components/bottom_navbar.dart';
+import 'package:e_food_cort/components/list_product_paralax.dart';
 import 'package:e_food_cort/components/list_products.dart';
 import 'package:e_food_cort/components/product_per_category.dart';
 import 'package:e_food_cort/components/splash_screen.dart';
+import 'package:e_food_cort/models/product.dart';
+import 'package:e_food_cort/providers/order-provider.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
 void main(List<String> args) {
   runApp(MyApp());
@@ -13,9 +17,14 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
+    return MultiProvider(
+      providers: [
+          ChangeNotifierProvider(create: (_) => OrderProvider()),
+      ],
+      child: MaterialApp(
       debugShowCheckedModeBanner: false,
       home: SplashScreen(),
+    ),
     );
   }
 }
@@ -25,9 +34,20 @@ class NavbarAppBar extends StatefulWidget {
   _NavbarAppBarState createState() => _NavbarAppBarState();
 }
 
-class _NavbarAppBarState extends State<NavbarAppBar> {
+class _NavbarAppBarState extends State<NavbarAppBar>{
   late BuildContext _context;
   int _selectedNavbar = 0;
+
+  List<Widget> _widgetOptions = [];
+
+  @override
+  void initState() {
+    super.initState();
+    _widgetOptions = <Widget>[
+      ListViewMainScreen(),
+      ListProductParallax(),
+    ];
+  }
 
   void _changeSelectedNavBar(int index) {
     setState(() {
@@ -36,6 +56,7 @@ class _NavbarAppBarState extends State<NavbarAppBar> {
   }
   @override
   Widget build(BuildContext context) {
+    final order =  Provider.of<OrderProvider>(context);
     _context = context;
     return Scaffold(
       appBar: AppBar(
@@ -61,8 +82,53 @@ class _NavbarAppBarState extends State<NavbarAppBar> {
               fontWeight: FontWeight.bold,
             )),
       ),
-      bottomNavigationBar: BottomNavbar(),
-      body: ListView(
+      bottomNavigationBar: BottomNavigationBar(
+      items: const <BottomNavigationBarItem>[
+          BottomNavigationBarItem(
+            icon: Icon(
+              Icons.home,
+              size: 18,
+            ),
+            label: 'Beranda',
+          ),
+          BottomNavigationBarItem(
+            icon: Icon(
+              Icons.assignment,
+              size: 18,
+            ),
+            label: 'Pesanan',
+          ),
+          BottomNavigationBarItem(
+            icon: Icon(
+              Icons.favorite,
+              size: 18,
+            ),
+            label: 'Wishlist',
+          ),
+        ],
+        currentIndex: _selectedNavbar,
+        selectedItemColor: Colors.green,
+        unselectedItemColor: Colors.grey,
+        showUnselectedLabels: true,
+        onTap: _changeSelectedNavBar,
+      ),
+      body: _widgetOptions.elementAt(_selectedNavbar),
+    );
+  }
+  
+  @override
+  bool get wantKeepAlive => true;
+}
+
+class ListViewMainScreen extends StatefulWidget {
+  @override
+  _ListViewMainScreen createState() => _ListViewMainScreen();
+}
+
+class _ListViewMainScreen extends State<ListViewMainScreen> {
+  @override
+  Widget build(BuildContext context) {
+    return ListView(
         children: <Widget>[
           Container(
             margin: EdgeInsets.only(top: 20, right: 20, left: 20),
@@ -526,7 +592,6 @@ class _NavbarAppBarState extends State<NavbarAppBar> {
             )
           )
         ],
-      ),
-    );
+      );
   }
 }
